@@ -1,80 +1,95 @@
-Vehicle Inventory System Backend
-This project is a backend service for managing a vehicle inventory. It uses GraphQL to handle queries and mutations related to vehicle data. This README provides all the necessary instructions to set up and run this backend system.
+# Vehicle Inventory System Backend
 
-Technology Stack
-Node.js: The runtime environment for running the JavaScript code server-side.
-Apollo Server: A community-driven, open-source GraphQL server.
-MongoDB: The database used for storing vehicle data.
-Mongoose: An ODM (Object Data Modeling) library for MongoDB and Node.js.
-GraphQL: A query language for your API.
-Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+## Overview
+This project is a backend service for managing a vehicle inventory system. It leverages GraphQL to handle queries and mutations related to vehicle data.
 
-Prerequisites
-What things you need to install the software:
+## Table of Contents
+- [Technology Stack](#technology-stack)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+- [API Documentation](#api-documentation)
+    - [Queries](#queries)
+    - [Mutations](#mutations)
 
-Node.js (https://nodejs.org/)
-MongoDB (https://www.mongodb.com/try/download/community) or Docker (for running MongoDB in a container)
-Installing
-A step-by-step series of examples that tell you how to get a development environment running:
+## Technology Stack
+- **Node.js**: The runtime environment for running JavaScript server-side.
+- **Apollo Server**: A community-driven, open-source GraphQL server.
+- **MongoDB**: The NoSQL database used for storing vehicle data.
+- **Mongoose**: An ODM (Object Data Modeling) library for MongoDB and Node.js.
+- **GraphQL**: A query language for APIs.
 
-Clone the repository:
+## Getting Started
+### Prerequisites
+Before you begin, ensure you have the following installed:
+- Node.js - Download & Install [Node.js](https://nodejs.org/)
+- MongoDB - Download & Install [MongoDB](https://www.mongodb.com/try/download/community), or use Docker to run a MongoDB container.
 
-bash
-Copy code
-git clone https://yourrepository.com/vehicle-inventory-backend.git
-cd vehicle-inventory-backend
-Install dependencies:
+### Installation
+Follow these steps to get your development environment running:
 
-bash
-Copy code
-npm install
-Ensure MongoDB is running:
+1. Clone the repository:
+   ```bash
+   git clone github.com:DomasMa/VehicleInventory.git
+   cd vehicle-inventory-backend
+   
+2. Install NPM packages:
+   ```bash
+   npm install
 
-If using a local MongoDB installation, ensure mongod is running.
-If using Docker, you can start MongoDB with:
-bash
-Copy code
-docker run --name mongodb -d -p 27017:27017 mongo
-Start the server:
+3. Start the MongoDB service (skip if using Docker):
+   ```bash
+   mongod
 
-bash
-Copy code
-node server.js
-Usage
-Once the server is running, you can interact with the GraphQL API. Here are the primary operations you can perform:
+4. Seed the database with sample data:
+   ```bash
+   cd seed
+   node seed.js
+   
+5. Run the server:
+   ```bash
+   node server.js
 
-Queries
-Fetch All Vehicles:
+# API Documentation
 
-graphql
-Copy code
-query {
-vehicles {
-vehicle_make
-vehicle_model
-vehicle_year
-plate_number
-transmission
+Here's how to interact with the API:
+
+## Queries
+
+### Fetch All Vehicles
+
+Retrieve all vehicles from the inventory:
+
+```graphql
+{
+  query: {
+    vehicles {
+      vehicle_make
+      vehicle_model
+      vehicle_year
+      plate_number
+      transmission
+    }
+  }
 }
-}
-Mutations
-Add a New Vehicle:
+```
+## Mutations
 
-graphql
-Copy code
+### Add a New Vehicle
+
+Add a new vehicle to the database:
+
+```graphql
 mutation AddVehicle($vehicle_make: String!, $vehicle_model: String!, $vehicle_year: Int!, $plate_number: String!, $transmission: String!) {
-addVehicle(vehicle_make: $vehicle_make, vehicle_model: $vehicle_model, vehicle_year: $vehicle_year, plate_number: $plate_number, transmission: $transmission) {
-success
-message
-vehicle {
-vehicle_make
-vehicle_model
-vehicle_year
-plate_number
-transmission
+  addVehicle(vehicle_make: $vehicle_make, vehicle_model: $vehicle_model, vehicle_year: $vehicle_year, plate_number: $plate_number, transmission: $transmission) {
+    success
+    message
+    vehicle {
+      vehicle_make
+      vehicle_model
+      vehicle_year
+      plate_number
+      transmission
+    }
+  }
 }
-}
-}
-Contributing
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
