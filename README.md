@@ -54,6 +54,11 @@ Follow these steps to get your development environment running:
 
 Here's how to interact with the API:
 
+**The GraphQL server runs on:** 
+
+``http://localhost:4000/graphql``
+
+
 ## Queries
 
 ### Fetch All Vehicles
@@ -78,6 +83,7 @@ Retrieve all vehicles from the inventory:
 ### Add a New Vehicle
 
 Add a new vehicle to the database:
+
 
 ```graphql
 mutation AddVehicle($vehicle_make: String!, $vehicle_model: String!, $vehicle_year: Int!, $plate_number: String!, $transmission: String!) {
